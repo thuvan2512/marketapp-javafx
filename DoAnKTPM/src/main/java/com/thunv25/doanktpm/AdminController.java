@@ -497,7 +497,7 @@ public class AdminController implements Initializable {
                 try {
                     if (PromotionService.createPromotion(cbProductPromo.getSelectionModel().getSelectedItem().getId(), valueOf(dtpStartDate.getValue()),valueOf(dtpEndDate.getValue()), Double.parseDouble(txtPercentDiscount.getText()))) {
                         Utils.showBox("Tạo mới khuyến mãi thành công!!!", Alert.AlertType.INFORMATION).show();
-                        PromotionService.getPromo();
+                        PromotionService.getPromotion();
                         pnParent.getChildren().clear();
                         tbAdminView.getColumns().clear();
                         loadPromotion();
@@ -516,7 +516,7 @@ public class AdminController implements Initializable {
             try {
                 if (PromotionService.deletePromotion(promotion.getPromoID()) == true) {
                     Utils.showBox("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
-                    PromotionService.getPromo();
+                    PromotionService.getPromotion();
                     tbAdminView.getColumns().clear();
                     pnParent.getChildren().clear();
                     loadPromotion();
@@ -855,6 +855,6 @@ public class AdminController implements Initializable {
         
     }
     public void loadDataPromo() {
-        this.tbAdminView.setItems(FXCollections.observableArrayList(PromotionService.getListPromo()));
+        this.tbAdminView.setItems(FXCollections.observableArrayList(PromotionService.getListPromotions()));
     }
 }

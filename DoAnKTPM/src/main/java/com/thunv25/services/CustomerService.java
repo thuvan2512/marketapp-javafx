@@ -2,6 +2,7 @@ package com.thunv25.services;
 
 import com.thunv25.doanktpm.SaleController;
 import com.thunv25.pojo.Customer;
+import com.thunv25.pojo.Gender;
 import com.thunv25.pojo.Product;
 import com.thunv25.utils.JdbcUtils;
 import java.sql.Connection;
@@ -20,22 +21,28 @@ public class CustomerService {
 
     private static ArrayList<Customer> listCustomers = new ArrayList<>();
 
+    static {
+        try {
+            CustomerService.getCustomers();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static ArrayList<Customer> getListCustomers() {
         return listCustomers;
     }
 
-    public void getCustomers() {
+    public static void getCustomers() throws SQLException{
         try ( Connection conn = JdbcUtils.getConnection()) {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM customer");
 
             while (rs.next()) {
-                Customer customer = new Customer(rs.getString("cusId"), rs.getString("name"), rs.getInt("gender"), rs.getString("phone"), rs.getDate("dob"));
+                Customer customer = new Customer(rs.getString("cusID"), rs.getString("name"), rs.getInt("gender"), rs.getString("phone"), rs.getDate("dob"));
                 listCustomers.add(customer);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(SaleController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
     public void addCustomer(Customer customer) throws SQLException {

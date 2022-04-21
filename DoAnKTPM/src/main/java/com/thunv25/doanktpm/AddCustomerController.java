@@ -40,34 +40,45 @@ public class AddCustomerController implements Initializable {
 
     CustomerService customerService = new CustomerService();
     GenderService genderService = new GenderService();
+//    ArrayList<Customer> myCustomer = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-
-        customerService.getCustomers();
         cbGender.setItems(FXCollections.observableArrayList(GenderService.getListGenders()));
 
     }
 
     public void addCustomerButton(ActionEvent event) throws SQLException {
+        boolean flag = false;
         if (!txtCustomerName.getText().isEmpty()) {
             if (!txtCustomerPhone.getText().isEmpty()) {
-               if (cbGender != null) {
+                if (cbGender.getValue() != null) {
                     if (dpCustomer.getValue() != null) {
-                        Customer customer = new Customer(UUID.randomUUID().toString(), txtCustomerName.getText(), cbGender.getValue().getGenderID(), txtCustomerPhone.getText(), java.sql.Date.valueOf(dpCustomer.getValue()));
-                        customerService.addCustomer(customer);
-                        Utils.showBox("Ghi khach hang thanh cong!", Alert.AlertType.INFORMATION).show();
+                        for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
+                            if (txtCustomerPhone.getText().equals(CustomerService.getListCustomers().get(i).getPhone())) {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if (flag == false) {
+                            Customer customer = new Customer(UUID.randomUUID().toString(), txtCustomerName.getText(), cbGender.getValue().getGenderID(), txtCustomerPhone.getText(), java.sql.Date.valueOf(dpCustomer.getValue()));
+                            customerService.addCustomer(customer);
+                            Utils.showBox("Đăng ký khách hàng thành công!", Alert.AlertType.INFORMATION).show();
+                        }
+                        else {
+                            Utils.showBox("Trùng số điện thoại!", Alert.AlertType.ERROR).show();
+                        }
                     } else {
-                        Utils.showBox("Chua nhap ngay sinh!", Alert.AlertType.ERROR).show();
+                        Utils.showBox("Chưa nhập ngày sinh!", Alert.AlertType.ERROR).show();
                     }
                 } else {
-                   Utils.showBox("Chua chon gioi tinh!", Alert.AlertType.ERROR).show();
-               }
+                    Utils.showBox("Chưa chọn giới tính!", Alert.AlertType.ERROR).show();
+                }
             } else {
-                Utils.showBox("Chua nhap so dien thoai khach hang!", Alert.AlertType.ERROR).show();
+                Utils.showBox("Chưa nhập số điện thoại khách hàng!", Alert.AlertType.ERROR).show();
             }
         } else {
-            Utils.showBox("Chua nhap ten khach hang!", Alert.AlertType.ERROR).show();
+            Utils.showBox("Chưa nhập tên khách hàng!", Alert.AlertType.ERROR).show();
         }
     }
 

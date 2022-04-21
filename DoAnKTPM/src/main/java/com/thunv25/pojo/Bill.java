@@ -1,6 +1,7 @@
 package com.thunv25.pojo;
 
 import com.thunv25.utils.Utils;
+import java.util.Date;
 
 public class Bill {
 
@@ -9,16 +10,20 @@ public class Bill {
     private String barnchID;
     private boolean paymentState;
     private double percentDiscount;
+    private double totalPrice;
+    private Date createdDate;
 
     public Bill() {
     }
 
-    public Bill(String id, String cusID, String barnchID, boolean paymentState, double percentDiscount) {
+    public Bill(String id, String cusID, String barnchID, boolean paymentState, double percentDiscount, double totalPrice, Date createdDate) {
         this.id = id;
         this.cusID = cusID;
         this.barnchID = barnchID;
         this.paymentState = paymentState;
         this.percentDiscount = percentDiscount;
+        this.totalPrice = totalPrice;
+        this.createdDate = createdDate;
     }
     
     public Bill(String cusID, String barnchID, boolean paymentState, double percentDiscount) {
@@ -67,6 +72,22 @@ public class Bill {
 
     public void setPercentDiscount(double percentDiscount) {
         this.percentDiscount = percentDiscount;
+    }
+    
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+    
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    
+    public void setCreatedDate(Date createDate) {
+        this.createdDate = createDate;
+    }
+    
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
 //    private int billID;

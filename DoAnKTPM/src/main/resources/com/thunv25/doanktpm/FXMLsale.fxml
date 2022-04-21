@@ -15,13 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunv25.doanktpm.SaleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunv25.doanktpm.SaleController">
    <children>
       <VBox layoutY="-2.0" prefHeight="562.0" prefWidth="904.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="958.0">
                <children>
-                  <GridPane prefHeight="67.0" prefWidth="901.0">
+                  <GridPane prefHeight="89.0" prefWidth="902.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,13 +38,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                      <children>
-                        <Text fx:id="lbBranch" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi nhánh" textAlignment="CENTER" wrappingWidth="361.61217880249023" GridPane.rowIndex="1">
+                        <Text fx:id="lbBranch" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi nhánh" textAlignment="CENTER" wrappingWidth="408.8121910095215" GridPane.rowIndex="1">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <Text fill="#a61f1f" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRANG BÁN HÀNG" textAlignment="CENTER" wrappingWidth="305.98301017284393" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                        <Text fill="#a61f1f" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRANG BÁN HÀNG" textAlignment="CENTER" wrappingWidth="305.98301017284393" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
                            <font>
-                              <Font name="System Bold" size="33.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
                         <Text fx:id="lbStaff" layoutX="210.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên ghi ở đây" textAlignment="CENTER" wrappingWidth="176.3831272125244" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -59,34 +59,34 @@
                   </GridPane>
                </children>
             </HBox>
-            <HBox prefHeight="392.0" prefWidth="904.0">
+            <HBox prefHeight="499.0" prefWidth="958.0">
                <children>
-                  <GridPane prefHeight="403.0" prefWidth="620.0">
+                  <GridPane prefHeight="392.0" prefWidth="639.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="619.6" minWidth="10.0" prefWidth="619.6" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="639.0" minWidth="10.0" prefWidth="639.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.199951171875" minWidth="0.0" prefWidth="0.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="tbView" editable="true" onMouseClicked="#showNumbers" prefHeight="389.0" prefWidth="620.0">
+                        <TableView fx:id="tbView" editable="true" onMouseClicked="#showNumbers" prefHeight="408.0" prefWidth="639.0">
                            <columns>
                               <TableColumn fx:id="colProductID" prefWidth="93.60000306367874" text="Mã đơn hàng" />
                               <TableColumn fx:id="colName" prefWidth="211.2000274658203" text="Tên đơn" />
                               <TableColumn fx:id="colOrigin" prefWidth="120.00006103515625" text="Xuất xứ" />
                               <TableColumn fx:id="colUnitPrice" prefWidth="124.79995727539062" text="Đơn giá" />
-                              <TableColumn fx:id="colQuantity" prefWidth="68.79998779296875" text="Số lượng" />
+                              <TableColumn fx:id="colQuantity" prefWidth="86.4000122070313" text="Số lượng" />
                            </columns>
                         </TableView>
                      </children>
                   </GridPane>
-                  <GridPane prefHeight="404.0" prefWidth="272.0">
+                  <GridPane prefHeight="392.0" prefWidth="309.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.20001220703125" minWidth="3.8000000000000007" prefWidth="14.99998779296875" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.79999389648437" minWidth="10.0" prefWidth="70.20001220703125" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.79999389648437" minWidth="0.0" prefWidth="0.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.00001220703123" minWidth="10.0" prefWidth="91.20000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.79999389648437" minWidth="0.0" prefWidth="12.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.00001220703123" minWidth="10.0" prefWidth="106.39999999999999" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.79999389648437" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -102,102 +102,116 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <Button mnemonicParsing="false" onAction="#addButton" prefHeight="33.0" prefWidth="260.0" text="Thêm" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
+                        <Button mnemonicParsing="false" onAction="#addButton" prefHeight="34.0" prefWidth="297.0" text="Thêm" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Button>
-                        <Button layoutX="10.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="33.0" prefWidth="259.0" text="Xóa" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+                        <Button layoutX="10.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="34.0" prefWidth="294.0" text="Xóa" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Button>
-                        <Button mnemonicParsing="false" onAction="#btThanhToan" prefHeight="66.0" prefWidth="261.0" text="Thanh toán" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
+                        <Button mnemonicParsing="false" onAction="#btThanhToan" prefHeight="60.0" prefWidth="295.0" text="Thanh toán" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Button>
-                        <Button mnemonicParsing="false" onAction="#updateButton" prefHeight="33.0" prefWidth="269.0" text="Cập nhật" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
+                        <Button mnemonicParsing="false" onAction="#updateButton" prefHeight="34.0" prefWidth="298.0" text="Cập nhật" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="13.600000381469727" />
                            </font></Button>
-                        <ComboBox fx:id="cbProductID" prefHeight="28.0" prefWidth="198.0" promptText="Chọn sản phẩm" GridPane.columnIndex="3" GridPane.columnSpan="2" />
+                        <ComboBox fx:id="cbProductID" prefHeight="28.0" prefWidth="180.0" promptText="Chọn sản phẩm" GridPane.columnIndex="3" GridPane.columnSpan="2" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng" wrappingWidth="148.75395584106445" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <TextField fx:id="txtQuantity" prefHeight="26.0" prefWidth="284.0" promptText="Thay đổi số lượng" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtQuantity" prefHeight="26.0" prefWidth="152.0" promptText="Thay đổi số lượng" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
             </HBox>
-            <HBox prefHeight="46.0" prefWidth="904.0">
+            <HBox prefHeight="188.0" prefWidth="958.0">
                <children>
                   <GridPane prefHeight="79.0" prefWidth="317.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="12.800000953674314" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.600004196167" minWidth="10.0" prefWidth="111.199991607666" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.9999938964844" minWidth="10.0" prefWidth="218.79999999999995" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="32.60001220703125" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.600004196167" minWidth="10.0" prefWidth="93.60001220703124" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.9999938964844" minWidth="10.0" prefWidth="192.79998779296875" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.9999938964844" minWidth="0.0" prefWidth="0.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.8000244140625" minHeight="10.0" prefHeight="22.00003662109375" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="44.19998779296874" minHeight="10.0" prefHeight="31.99996337890625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="49.60001220703124" minHeight="10.0" prefHeight="35.200036621093744" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.999967956542974" minHeight="10.0" prefHeight="45.999967956542974" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng số tiền" wrappingWidth="83.58304977416992" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="13.0" />
-                           </font></Text>
+                           </font>
+                        </Text>
                         <Label fx:id="lbTotalPrice" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                         <Text layoutX="55.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền thừa" wrappingWidth="83.58304977416992" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="13.0" />
-                           </font></Text>
+                           </font>
+                        </Text>
                         <Label fx:id="lbLeftMoney" layoutX="152.0" layoutY="24.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
+                        <Label fx:id="lbDiscount" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbDiscountS" text="Khách hàng" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
-                  <GridPane prefHeight="79.0" prefWidth="430.0">
+                  <GridPane prefHeight="177.0" prefWidth="632.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.20001220703125" minWidth="0.0" prefWidth="0.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.60000000000002" minWidth="10.0" prefWidth="173.60000000000002" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.199951171875" minWidth="10.0" prefWidth="287.1999755859375" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.19995117187506" minWidth="10.0" prefWidth="50.80004882812506" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.20001220703125" minWidth="0.0" prefWidth="1.7999519467353835" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.20004805326462" minWidth="10.0" prefWidth="133.60000610351562" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.3999938964844" minWidth="10.0" prefWidth="248.8" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.3999938964844" minWidth="0.0" prefWidth="8.20001220703125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.39998779296877" minWidth="10.0" prefWidth="119.79998779296875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.39998779296877" minWidth="0.0" prefWidth="8.199981689453182" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.19993896484374" minWidth="10.0" prefWidth="115.80001831054688" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="30.4" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="30.4" minHeight="9.799963378906249" prefHeight="9.799963378906249" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="30.4" minHeight="10.0" prefHeight="18.400048828125" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="17.60001220703125" minHeight="6.399999999999999" prefHeight="9.599951171874999" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="17.60001220703125" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="17.60001220703125" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="36.799961471557616" minHeight="10.0" prefHeight="23.19998779296875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.80001220703125" minHeight="9.799963378906249" prefHeight="48.80001220703125" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.4" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="38.39996337890625" minHeight="6.399999999999999" prefHeight="38.39996337890625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="24.799963378906256" minHeight="0.0" prefHeight="0.8000366210937528" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="17.60001220703125" minHeight="3.200024414062497" prefHeight="3.200024414062497" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="17.60001220703125" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="17.60001220703125" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập mã khách hàng" wrappingWidth="141.06109821796417" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập mã khách hàng" wrappingWidth="141.06109821796417" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <TextField fx:id="txtMaKhachHang" prefHeight="10.0" prefWidth="293.0" promptText="Nhập SĐT khách hàng (có thể không nhập)" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền khách" wrappingWidth="88.75389862060547" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="txtMaKhachHang" prefHeight="10.0" prefWidth="293.0" promptText="Nhập SĐT khách hàng (có thể không nhập)" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền khách" wrappingWidth="88.75389862060547" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <TextField fx:id="txtCustomerMoney" prefHeight="26.0" prefWidth="161.0" promptText="Nhập tiền khách đưa" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtCustomerMoney" prefHeight="26.0" prefWidth="264.0" promptText="Nhập tiền khách đưa" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#goToAddCustomerController" prefHeight="73.0" prefWidth="148.0" text="Đăng ký khách hàng" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                        <Button mnemonicParsing="false" onAction="#checkProductDiscount" prefHeight="75.0" prefWidth="119.0" text="Kiểm tra giảm giá" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.rowSpan="3" />
                      </children>
                   </GridPane>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="148.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#goToAddCustomerController" prefHeight="34.0" prefWidth="150.0" text="Đăng ký khách hàng" />
-                     </children>
-                  </VBox>
                </children>
             </HBox>
          </children>

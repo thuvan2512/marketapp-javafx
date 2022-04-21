@@ -8,8 +8,10 @@ import com.thunv25.pojo.Order;
 import com.thunv25.pojo.Product;
 import com.thunv25.services.BillService;
 import com.thunv25.services.BranchService;
+import com.thunv25.services.CustomerService;
 import com.thunv25.services.OrderService;
 import com.thunv25.services.ProductService;
+import com.thunv25.services.PromotionService;
 import com.thunv25.services.StaffServices;
 import com.thunv25.utils.Utils;
 import java.io.IOException;
@@ -42,13 +44,16 @@ import java.util.UUID;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.paint.Color;
 
 public class SaleController implements Initializable {
 
     public static double tongTien = 0;
     public static double tienThoiLai = 0;
     public static double discount = 0;
+    public static double discount2 = 0;
     public static boolean temp = false;
+    public static String cusID;
     @FXML
     private TableColumn<Product, Integer> colProductID;
     @FXML
@@ -74,10 +79,14 @@ public class SaleController implements Initializable {
     @FXML
     private Label lbLeftMoney;
     @FXML
+    private Label lbDiscount;
+    @FXML
     private TextField txtCustomerMoney;
     @FXML
     private TextField txtMaKhachHang;
-
+    @FXML
+    private Label lbDiscountS;
+    
     List<Customer> getCustomer = new ArrayList<>();
     ProductService productService = new ProductService();
     BillService billService = new BillService();
@@ -119,7 +128,11 @@ public class SaleController implements Initializable {
     public void addButton(ActionEvent event) {
         if (cbProductID.getValue() != null) {
             Product product = new Product();
+            PromotionService promotionService = new PromotionService();
+           
+//            productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
             productService.checkDataToAdd(cbProductID, product, tbView, txtQuantity);
+             promotionService.checkProductDiscount(tbView);
             productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
         }
     }
@@ -139,12 +152,12 @@ public class SaleController implements Initializable {
             ObservableList<Product> items = tbView.getItems();
 
             if (items.isEmpty()) {
-                Utils.showBox("Your table is empty!", AlertType.ERROR).show();
+                Utils.showBox("Bạn chưa thêm sản phẩm vào bảng!", AlertType.ERROR).show();
             } else {
                 if (productService.isNumberic(txtCustomerMoney.getText())) {
                     Double d = Double.parseDouble(txtCustomerMoney.getText());
                     if (d < 0) {
-                        Utils.showBox("Not enough money!", Alert.AlertType.ERROR).show();
+                        Utils.showBox("Không được nhập số âm!", Alert.AlertType.ERROR).show();
                     } else {
                         Product products = new Product();
                         List<String> newList = new ArrayList<>();
@@ -164,33 +177,56 @@ public class SaleController implements Initializable {
                         productService.checkDiscount(getCustomer, newList, maKhachHang, cusID, tongTien);
 
                         //Neu temp == true thi giam gia tong tien theo phan tram, nguoc lai thi khong giam gia
-                        productService.discount(temp, tongTien, discount, tienKhachDua);
+                        productService.discount(temp, tongTien, SaleController.discount, tienKhachDua);
                         lbLeftMoney.setText(String.format("%,.0f VND", tienThoiLai));
                         //Hien thong bao neu dua khong du tien, nguoc lai thi hien so tien va ghi vao co so du lieu
                         if (tienThoiLai < 0) {
-                            Utils.showBox("Not enough money!", Alert.AlertType.ERROR).show();
+                            Utils.showBox("Số tiền không đủ để thanh toán!", Alert.AlertType.ERROR).show();
 
                         } else {
-                            productService.arlertPaymentAndInsertData(products, cusID, billService, discount, tbView);
+                            productService.arlertPaymentAndInsertData(products, SaleController.cusID, billService, discount, tbView);
+
+                            txtCustomerMoney.setText("");
+                            txtMaKhachHang.setText("");
+                            txtQuantity.setText("");
+                            lbTotalPrice.setText("");
+                            lbLeftMoney.setText("");
+                            lbDiscount.setText("");
+                            lbDiscountS.setText("");
+                            tbView.getItems().clear();
                         }
                     }
 
                 } else {
-                    Utils.showBox("Nhap sai dinh dang!", AlertType.ERROR).show();
+                    Utils.showBox("Bạn đã nhập sai định dạng!", AlertType.ERROR).show();
                 }
             }
 
         } else {
-            Utils.showBox("Khong duoc de rong!", AlertType.ERROR).show();
+            Utils.showBox("Bạn chưa nhập số tiền khách hàng đưa!", AlertType.ERROR).show();
         }
 
+    }
+
+    public void checkProductDiscount(ActionEvent event) {
+        for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
+            if (txtMaKhachHang.getText().equals(CustomerService.getListCustomers().get(i).getPhone())) {
+                lbDiscountS.setTextFill(Color.web("#4BB543"));
+                lbDiscount.setText(CustomerService.getListCustomers().get(i).getName());
+                lbDiscount.setTextFill(Color.web("#4BB543"));
+            } else {
+                lbDiscount.setTextFill(Color.web("#D0342C"));
+                lbDiscount.setText("Không tìm thấy!");
+                lbDiscountS.setTextFill(Color.web("#D0342C"));
+            }
+        }
     }
 
     public void goBackLoginForm(ActionEvent event) throws IOException {
         StaffServices.setCurrentUser(null);
         App.setRoot("FXMLlogin");
     }
-    
+
     public void goToAddCustomerController(ActionEvent event) throws IOException {
         App.setRoot("FXMLaddCustomer");
     }

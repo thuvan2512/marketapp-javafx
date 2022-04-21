@@ -162,12 +162,13 @@ public class ProductService {
     public void checkDiscount(List<Customer> getCustomer, List<String> newList, String maKhachHang, String cusID, double tongTien) {
         double discount = 0;
         boolean temp = false;
+
         //Get current date and month
         LocalDate currentDate = LocalDate.now();
         int day = currentDate.getDayOfMonth();
         int month = currentDate.getMonthValue();
-        for (int i = 0; i < getCustomer.size(); i++) {
 
+        for (int i = 0; i < getCustomer.size(); i++) {
             newList.add(getCustomer.get(i).getDob() + "");
             String[] value = newList.get(i).split("-");
             if (maKhachHang.equals(getCustomer.get(i).getPhone()) && day == Integer.parseInt(value[2]) && month == Integer.parseInt(value[1]) && tongTien > 1000000) {
@@ -176,8 +177,10 @@ public class ProductService {
                 cusID = getCustomer.get(i).getCusID();
             }
         }
+
         SaleController.discount = discount;
         SaleController.temp = temp;
+        SaleController.cusID = cusID;
     }
 
     public void discount(boolean temp, double tongTien, double discount, double tienKhachDua) {
@@ -190,16 +193,18 @@ public class ProductService {
             tienThoiLai = tienKhachDua - tongTien;
         }
         SaleController.tienThoiLai = tienThoiLai;
+        SaleController.tongTien = tongTien;
     }
 
     public void arlertPaymentAndInsertData(Product products, String cusID, BillService billService, double discount, TableView<Product> tbView) throws SQLException {
+        LocalDate currentDate = LocalDate.now();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText(String.format("Money give back customer: %,.0f VND", tienThoiLai));
-        alert.setContentText("Are you sure to get bill?");
+        alert.setHeaderText(String.format("Số tiền thối lại cho khách hàng : %,.0f VND", tienThoiLai));
+        alert.setContentText(String.format("Bạn được giảm giá %s%s vào tổng tiền ╰(*°▽°*)╯", SaleController.discount*100, "%"));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Bill bills = new Bill(UUID.randomUUID().toString(), cusID, BranchService.findBranchByID(StaffServices.getCurrentUser().getBranch()).getBranchID(), true, discount);
+            Bill bills = new Bill(UUID.randomUUID().toString(), cusID, BranchService.findBranchByID(StaffServices.getCurrentUser().getBranch()).getBranchID(), true, discount, SaleController.tongTien, java.sql.Date.valueOf(currentDate));
 
             //Add bills to database
             billService.addBill(bills);
@@ -211,9 +216,9 @@ public class ProductService {
                 OrderService orderService = new OrderService();
                 orderService.addOrder(order);
             }
-            Utils.showBox("Payment Successed!", Alert.AlertType.INFORMATION).show();
+            Utils.showBox("Thanh toán thành công!", Alert.AlertType.INFORMATION).show();
         } else {
-            Utils.showBox("Payment Failed!", Alert.AlertType.ERROR).show();
+            Utils.showBox("Thanh toán thất bại!", Alert.AlertType.ERROR).show();
         }
     }
 
