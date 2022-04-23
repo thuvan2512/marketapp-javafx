@@ -54,6 +54,8 @@ public class SaleController implements Initializable {
     public static double discount2 = 0;
     public static boolean temp = false;
     public static String cusID;
+    public static double myTemp = 0;
+    public static double myTemp2 = 0;
     @FXML
     private TableColumn<Product, Integer> colProductID;
     @FXML
@@ -86,7 +88,9 @@ public class SaleController implements Initializable {
     private TextField txtMaKhachHang;
     @FXML
     private Label lbDiscountS;
-    
+    @FXML
+    private Label lbMoneyAfter;
+
     List<Customer> getCustomer = new ArrayList<>();
     ProductService productService = new ProductService();
     BillService billService = new BillService();
@@ -129,11 +133,23 @@ public class SaleController implements Initializable {
         if (cbProductID.getValue() != null) {
             Product product = new Product();
             PromotionService promotionService = new PromotionService();
-           
+
 //            productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
             productService.checkDataToAdd(cbProductID, product, tbView, txtQuantity);
-             promotionService.checkProductDiscount(tbView);
+            promotionService.checkProductDiscount(tbView);
             productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
+            double money = 0;
+            if (!lbTotalPrice.getText().equals(lbMoneyAfter.getText())) {
+                if (SaleController.myTemp != 0) {
+                    System.out.println(SaleController.myTemp);
+                    money = SaleController.tongTien;
+                    double money1 = SaleController.tongTien - (SaleController.tongTien * 0.1);
+                    lbMoneyAfter.setText(String.format("%,.0f VND", money1));
+                } else {
+                    money = SaleController.tongTien;
+                    lbMoneyAfter.setText(String.format("%,.0f VND", money));
+                }
+            }
         }
     }
 
@@ -192,8 +208,9 @@ public class SaleController implements Initializable {
                             lbTotalPrice.setText("");
                             lbLeftMoney.setText("");
                             lbDiscount.setText("");
-                            lbDiscountS.setText("");
+//                            lbDiscountS.setText("");
                             tbView.getItems().clear();
+                            lbMoneyAfter.setText("");
                         }
                     }
 
@@ -209,17 +226,43 @@ public class SaleController implements Initializable {
     }
 
     public void checkProductDiscount(ActionEvent event) {
+        boolean temp2 = false;
         for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
             if (txtMaKhachHang.getText().equals(CustomerService.getListCustomers().get(i).getPhone())) {
                 lbDiscountS.setTextFill(Color.web("#4BB543"));
                 lbDiscount.setText(CustomerService.getListCustomers().get(i).getName());
                 lbDiscount.setTextFill(Color.web("#4BB543"));
-            } else {
-                lbDiscount.setTextFill(Color.web("#D0342C"));
-                lbDiscount.setText("Không tìm thấy!");
-                lbDiscountS.setTextFill(Color.web("#D0342C"));
+                temp2 = true;
             }
         }
+        if (temp2 == false) {
+            lbDiscount.setTextFill(Color.web("#D0342C"));
+            lbDiscount.setText("Không tìm thấy!");
+            lbDiscountS.setTextFill(Color.web("#D0342C"));
+        }
+
+        boolean temp = false;
+        double tongTien = SaleController.tongTien;
+        LocalDate currentDate = LocalDate.now();
+        if (txtMaKhachHang != null && !txtMaKhachHang.getText().equals("")) {
+            for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
+                if (txtMaKhachHang.getText().equals(CustomerService.getListCustomers().get(i).getPhone())
+                        && SaleController.tongTien > 1000000
+                        && java.sql.Date.valueOf(currentDate).equals(CustomerService.getListCustomers().get(i).getDob())) {
+                    SaleController.myTemp2 = tongTien;
+                    tongTien = tongTien - tongTien * 0.1;
+                    SaleController.myTemp = tongTien;
+                    lbMoneyAfter.setText(String.format("%,.0f VND", tongTien));
+                    temp = true;
+                }
+            }
+            if (temp == false) {
+                lbMoneyAfter.setText(String.format("%,.0f VND", SaleController.tongTien));
+            }
+        } 
+//        else {
+//            Utils.showBox("Hãy nhập mà khách hàng!", AlertType.ERROR).show();
+//        }
     }
 
     public void goBackLoginForm(ActionEvent event) throws IOException {

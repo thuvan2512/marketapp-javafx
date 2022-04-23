@@ -38,7 +38,7 @@ public class BillService {
         }
     }
     
-    public void addBill(Bill bill) throws SQLException {
+    public boolean addBill(Bill bill) throws SQLException {
         try (Connection conn = JdbcUtils.getConnection()) {
             PreparedStatement stm2 = conn.prepareStatement("INSERT INTO `bill` (`billID`, `branchID`, `cusID`, `paymentState`, `percentDiscount`, `totalPrice`, `createdDate`) VALUES(?, ?, ?, ?, ?, ?, ?)");
             stm2.setString(1, bill.getId());
@@ -49,6 +49,7 @@ public class BillService {
             stm2.setDouble(6, bill.getTotalPrice());
             stm2.setDate(7, (Date) bill.getCreatedDate());
             stm2.executeUpdate();
+            return true;
         }
     }
 }

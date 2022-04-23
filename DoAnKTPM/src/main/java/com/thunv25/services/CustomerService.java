@@ -33,7 +33,7 @@ public class CustomerService {
         return listCustomers;
     }
 
-    public static void getCustomers() throws SQLException{
+    public static void getCustomers() throws SQLException {
         try ( Connection conn = JdbcUtils.getConnection()) {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM customer");
@@ -42,10 +42,10 @@ public class CustomerService {
                 Customer customer = new Customer(rs.getString("cusID"), rs.getString("name"), rs.getInt("gender"), rs.getString("phone"), rs.getDate("dob"));
                 listCustomers.add(customer);
             }
-        } 
+        }
     }
 
-    public void addCustomer(Customer customer) throws SQLException {
+    public boolean addCustomer(Customer customer) throws SQLException {
         try ( Connection conn = JdbcUtils.getConnection()) {
             PreparedStatement stm2 = conn.prepareStatement("INSERT INTO `customer` (`cusID`, `name`, `gender`, `phone`, `dob`) VALUES(?, ?, ?, ?, ?)");
             stm2.setString(1, customer.getCusID());
@@ -54,6 +54,7 @@ public class CustomerService {
             stm2.setString(4, customer.getPhone());
             stm2.setDate(5, (Date) customer.getDob());
             stm2.executeUpdate();
+            return true;
         }
     }
 
@@ -69,4 +70,12 @@ public class CustomerService {
         return true;
     }
 
+    public boolean checkPhone(String txtCustomerPhone) {
+        for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
+            if (txtCustomerPhone.equals(CustomerService.getListCustomers().get(i).getPhone())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
