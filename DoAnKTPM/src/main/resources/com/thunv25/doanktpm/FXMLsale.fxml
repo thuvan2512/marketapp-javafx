@@ -141,8 +141,10 @@
                         <RowConstraints maxHeight="30.8000244140625" minHeight="10.0" prefHeight="22.00003662109375" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="44.19998779296874" minHeight="10.0" prefHeight="31.99996337890625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="44.19998779296874" minHeight="10.0" prefHeight="31.99996337890625" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="49.60001220703124" minHeight="10.0" prefHeight="35.200036621093744" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="45.999967956542974" minHeight="10.0" prefHeight="45.999967956542974" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.999967956542974" minHeight="10.0" prefHeight="28.800024414062506" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.999967956542974" minHeight="10.0" prefHeight="39.999975585937506" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng số tiền" wrappingWidth="83.58304977416992" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
@@ -165,14 +167,24 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbDiscount" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Label fx:id="lbDiscount" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbDiscountS" text="Khách hàng" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="lbDiscountS" text="Khách hàng" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền sau giảm" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="lbMoneyAfter" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>

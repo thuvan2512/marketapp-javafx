@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class OrderService {
-    public void addOrder(Order order) throws SQLException {
+    public boolean addOrder(Order order) throws SQLException {
         try (Connection conn = JdbcUtils.getConnection()) {
             conn.setAutoCommit(false);
             PreparedStatement stm1 = conn.prepareStatement("INSERT INTO `order` (`orderID`, `quantity`, `billID`, `productID`) VALUES(?, ?, ?, ?)");
@@ -18,6 +18,7 @@ public class OrderService {
             stm1.executeUpdate();
             
             conn.commit();
+            return true;
         }
     }
 }

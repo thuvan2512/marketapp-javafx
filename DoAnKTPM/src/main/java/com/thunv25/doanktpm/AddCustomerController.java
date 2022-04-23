@@ -54,12 +54,13 @@ public class AddCustomerController implements Initializable {
             if (!txtCustomerPhone.getText().isEmpty()) {
                 if (cbGender.getValue() != null) {
                     if (dpCustomer.getValue() != null) {
-                        for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
-                            if (txtCustomerPhone.getText().equals(CustomerService.getListCustomers().get(i).getPhone())) {
-                                flag = true;
-                                break;
-                            }
-                        }
+                        flag = customerService.checkPhone(txtCustomerPhone.getText());
+//                        for (int i = 0; i < CustomerService.getListCustomers().size(); i++) {
+//                            if (txtCustomerPhone.getText().equals(CustomerService.getListCustomers().get(i).getPhone())) {
+//                                flag = true;
+//                                break;
+//                            }
+//                        }
                         if (flag == false) {
                             Customer customer = new Customer(UUID.randomUUID().toString(), txtCustomerName.getText(), cbGender.getValue().getGenderID(), txtCustomerPhone.getText(), java.sql.Date.valueOf(dpCustomer.getValue()));
                             customerService.addCustomer(customer);
