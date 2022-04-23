@@ -248,7 +248,10 @@ public class AdminController implements Initializable {
         btnAddNewProduct.setOnAction(evt -> {
             if (txtNameProduct.getText().isBlank() || txtOrigin.getText().isBlank() || txtUnitPrice.getText().isBlank()) {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
-            } else {
+            } else if(Utils.isNumber(txtUnitPrice.getText()) == false){
+                        Utils.showBox("Sai định dạng số", Alert.AlertType.WARNING).show();
+            }
+            else{
                 try {
                     if (ProductService.createNewProduct(txtNameProduct.getText(), txtOrigin.getText(), Double.parseDouble(txtUnitPrice.getText()), currentBranch.getBranchID()) == true) {
                         Utils.showBox("Tạo mới thành công!!!", Alert.AlertType.INFORMATION).show();
@@ -308,7 +311,10 @@ public class AdminController implements Initializable {
             Product product = (Product) tbAdminView.getSelectionModel().getSelectedItem();
             if (txtNameProduct.getText().isBlank() || txtOrigin.getText().isBlank() || txtUnitPrice.getText().isBlank()) {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
-            } else {
+            } else if(Utils.isNumber(txtUnitPrice.getText()) == false){
+                 Utils.showBox("Sai định dạng số", Alert.AlertType.WARNING).show();
+            }
+            else{
                 try {
                     if (ProductService.updateProduct(product.getId(), txtNameProduct.getText(), txtOrigin.getText(), Double.parseDouble(txtUnitPrice.getText())) == true) {
                         Utils.showBox("Cập nhật thành công!!!", Alert.AlertType.INFORMATION).show();
