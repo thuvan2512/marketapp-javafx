@@ -27,7 +27,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class TestProducts {
+public class SaleControllerTestSuite {
 //    private static Connection conn;
     private static ProductService productService;
     
