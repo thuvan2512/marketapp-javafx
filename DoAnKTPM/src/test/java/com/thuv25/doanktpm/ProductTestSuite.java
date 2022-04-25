@@ -64,8 +64,9 @@ public class ProductTestSuite {
     @Test
     @DisplayName("Kiểm tra xóa sản phẩm khỏi hệ thống thất bại")
     public void deleteProductFail() throws SQLException {
-        String productID = "499999670eb24-3985-40f9-bab6-a86de52a5c34";
+        String productID = "5679662d-cad8-43c5-8c0a-34562fa36475";
         Assertions.assertFalse(ProductService.deleteProduct(productID));
+        ProductService.getProducts();
     }
 
     @Test
@@ -139,4 +140,6 @@ public class ProductTestSuite {
         Assertions.assertEquals(product.getName(),name);
         Assertions.assertEquals(product.getOrigin(),origin);
     }
+    
+       
 }
