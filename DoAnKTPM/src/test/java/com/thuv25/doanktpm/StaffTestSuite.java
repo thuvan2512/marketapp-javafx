@@ -25,6 +25,14 @@ import org.junit.jupiter.api.Test;
  * @author thu.nv2512
  */
 public class StaffTestSuite {
+    @Test
+    @DisplayName("Kiểm tra đăng nhập hợp lệ")
+    public void checkValidLogin() throws SQLException {
+        String id = "a27a1a63-456d-49cb-a34e-88f1d11e6f74";
+        String username = "admin";
+        String password = "123";
+        Assertions.assertEquals(StaffServices.checkLogin(username, password).getStaffID(),id);
+    }
 
     @Test
     @DisplayName("Kiểm tra trùng username")
@@ -66,9 +74,9 @@ public class StaffTestSuite {
         String ID = "alsn9999670eb24-3985-40f9-bab6-a86de52a5c34";
         Assertions.assertFalse(StaffServices.deleteStaff(ID));
     }
-    
+
     @Test
-    @DisplayName("Kiểm tra xóa khỏi hệ thống thành công")
+    @DisplayName("Kiểm tra xóa nhân viên khỏi hệ thống thành công")
     public void deleteSuccess() throws SQLException {
         boolean flag = true;
         String ID = "jhsjn9999670eb24-3985-40f9-bab6-a86de52a5c34";
@@ -83,13 +91,12 @@ public class StaffTestSuite {
         Assertions.assertTrue(flag);
     }
 
-
     @Test
-    @DisplayName("Kiểm tra thêm thành công")
-    public void addProductBranchSuccess() throws SQLException {
+    @DisplayName("Kiểm tra nhân viên thêm thành công")
+    public void addSuccess() throws SQLException {
         String branchID = "gdfb6f1b-c178-4e3f-a8a6-73c85d266d91";
         String userName = "username";
-        Assertions.assertTrue(StaffServices.createStaff("a","a", "a", "a", userName, "123", 2, 1, branchID));
+        Assertions.assertTrue(StaffServices.createStaff("a", "a", "a", "a", userName, "123", 2, 1, branchID));
         StaffServices.getStaffs();
         boolean flag = false;
         for (Staff pd : StaffServices.getListStaffByBranchID(branchID)) {
@@ -102,20 +109,27 @@ public class StaffTestSuite {
     }
 
     @Test
-    @DisplayName("Kiểm tra cập nhật thành công")
-    public void updateProductBranchSuccess() throws SQLException {
+    @DisplayName("Kiểm tra cập nhật nhân viên thành công")
+    public void updateSuccess() throws SQLException {
         String staffID = "reyc95d1-9763-4908-b1ba-cd031d0cce43";
         String name = "Update test";
-        Assertions.assertTrue(StaffServices.updateStaff(name, "phone", "email", "home", "usernamee", "123", 2, 1, "gdfb6f1b-c178-4e3f-a8a6-73c85d266d91", staffID) );
+        Assertions.assertTrue(StaffServices.updateStaff(name, "phone", "email", "home", "usernamee", "123", 2, 1, "gdfb6f1b-c178-4e3f-a8a6-73c85d266d91", staffID));
         StaffServices.getStaffs();
         boolean flag = false;
         for (Staff staff : StaffServices.getListStaff()) {
-            if(staff.getStaffID().equals(staffID)){
+            if (staff.getStaffID().equals(staffID)) {
                 if (staff.getName().equals(name)) {
                     flag = true;
                 }
             }
         }
         Assertions.assertTrue(flag);
+    }
+
+    @Test
+    @DisplayName("Kiểm tra cập nhật nhân viên thất bại")
+    public void updateFail() throws SQLException {
+        String staffID = "reyc95d1-9763-4908-b1ba-cd031d0cce43";
+        Assertions.assertFalse(StaffServices.updateStaff("name", "phone", "email", "home", "usernamee", "123", 2, 1, "gdfb6f1b-c178-4e3f-a8a6-73c85d266d91", staffID));
     }
 }
