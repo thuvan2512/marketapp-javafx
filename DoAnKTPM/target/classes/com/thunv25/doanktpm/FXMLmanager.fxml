@@ -17,7 +17,10 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="Trở Về" textFill="#5b4949" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="Trở lại" textFill="#5b4949">
+         <font>
+            <Font name="System Bold" size="13.600000381469727" />
+         </font></Button>
       <Pane fx:id="pnParent" layoutX="7.0" layoutY="157.0" onDragDetected="#logOut" prefHeight="506.0" prefWidth="922.0">
          <children>
             <TableView fx:id="tbAdminView" layoutX="14.0" layoutY="15.0" onMouseClicked="#eventSelected" prefHeight="477.0" prefWidth="661.0" />

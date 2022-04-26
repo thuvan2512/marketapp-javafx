@@ -9,6 +9,7 @@ com\thunv25\pojo\Product.class
 com\thunv25\pojo\ProductBranch.class
 com\thunv25\services\OrderService.class
 com\thunv25\services\PromotionService.class
+com\thunv25\utils\JdbcUtils.class
 module-info.class
 com\thunv25\services\BillService.class
 com\thunv25\pojo\Customer.class
@@ -21,5 +22,6 @@ com\thunv25\pojo\Staff.class
 com\thunv25\services\ProductService.class
 com\thunv25\doanktpm\App.class
 com\thunv25\utils\Utils.class
+com\thunv25\doanktpm\SaleController.class
 com\thunv25\services\ProductBranchService.class
 com\thunv25\doanktpm\AdminController.class
