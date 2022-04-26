@@ -128,7 +128,7 @@ public class ProductService {
                 if (isNumberic(txtQuantity.getText())) {
                     double d = Double.parseDouble(txtQuantity.getText());
                     if (d <= 0) {
-                        Utils.showBox("Bạn phải nhập số tiền lớn hơn 0!", Alert.AlertType.ERROR).show();
+                        Utils.showBox("Bạn phải nhập số lượng lớn hơn 0!", Alert.AlertType.ERROR).show();
                     } else {
                         data.setUnit(d);
                         tbView.getItems().add(data);
@@ -147,9 +147,14 @@ public class ProductService {
             Product getProduct = tbView.getSelectionModel().getSelectedItem();
             if (getProduct != null && txtQuantity.getText().length() > 0 && txtQuantity.getText() != null) {
                 if (isNumberic(txtQuantity.getText())) {
-                    getProduct.setUnit(Double.parseDouble(txtQuantity.getText()));
-                    txtQuantity.setText("");
-                    tbView.refresh();
+                    if (Double.parseDouble(txtQuantity.getText()) > 0) {
+                        getProduct.setUnit(Double.parseDouble(txtQuantity.getText()));
+                        txtQuantity.setText("");
+                        tbView.refresh();
+                    }
+                    else{
+                        Utils.showBox("Số lượng phải lớn hơn 0", Alert.AlertType.WARNING).show();
+                    }
                 }
                 else 
                     Utils.showBox("Bạn nhập sai định dạng!", Alert.AlertType.ERROR).show();

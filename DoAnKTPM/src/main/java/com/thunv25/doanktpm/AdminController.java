@@ -250,8 +250,9 @@ public class AdminController implements Initializable {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
             } else if(Utils.isNumber(txtUnitPrice.getText()) == false){
                         Utils.showBox("Sai định dạng số", Alert.AlertType.WARNING).show();
-            }
-            else{
+            }else if (Double.parseDouble(txtUnitPrice.getText()) < 0) {
+                Utils.showBox("Không được nhập số âm", Alert.AlertType.WARNING).show();
+            } else{
                 try {
                     if (ProductService.createNewProduct(txtNameProduct.getText(), txtOrigin.getText(), Double.parseDouble(txtUnitPrice.getText()), currentBranch.getBranchID()) == true) {
                         Utils.showBox("Tạo mới thành công!!!", Alert.AlertType.INFORMATION).show();
@@ -313,8 +314,9 @@ public class AdminController implements Initializable {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
             } else if(Utils.isNumber(txtUnitPrice.getText()) == false){
                  Utils.showBox("Sai định dạng số", Alert.AlertType.WARNING).show();
-            }
-            else{
+            }else if (Double.parseDouble(txtUnitPrice.getText()) < 0) {
+                Utils.showBox("Không được nhập số âm", Alert.AlertType.WARNING).show();
+            }else{
                 try {
                     if (ProductService.updateProduct(product.getId(), txtNameProduct.getText(), txtOrigin.getText(), Double.parseDouble(txtUnitPrice.getText())) == true) {
                         Utils.showBox("Cập nhật thành công!!!", Alert.AlertType.INFORMATION).show();
@@ -493,8 +495,10 @@ public class AdminController implements Initializable {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
             }else if (Utils.isNumber(txtPercentDiscount.getText()) == false){
                 Utils.showBox("Sai định dạng số !!!", Alert.AlertType.WARNING).show();
-            }else if (Double.parseDouble(txtPercentDiscount.getText()) > 1) {
-                Utils.showBox("Phần trăm giảm giảm giá không được lớn hơn 1 !!!", Alert.AlertType.WARNING).show();
+            }else if (Double.parseDouble(txtPercentDiscount.getText()) > 1 || Double.parseDouble(txtPercentDiscount.getText()) < 0) {
+                Alert a = Utils.showBox("Phần trăm giảm giảm giá phải trong khoảng từ 0 đến 1 !!!", Alert.AlertType.WARNING);
+                a.setHeight(300);
+                a.show();
             }else if(dtpStartDate.getValue().isAfter(dtpEndDate.getValue()) ) {
                 Utils.showBox("Ngày bắt đầu phải trước ngày kết thúc!!!", Alert.AlertType.WARNING).show();
             } else if (PromotionService.checkValidToCreate(cbProductPromo.getSelectionModel().getSelectedItem().getId(), valueOf(dtpStartDate.getValue())) == false) {
