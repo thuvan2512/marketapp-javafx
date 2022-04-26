@@ -94,8 +94,8 @@ public class PromotionService {
                         && (PromotionService.getListPromotions().get(j).getEndDate().after(java.sql.Date.valueOf(currentDate))
                         || PromotionService.getListPromotions().get(j).getEndDate().equals(java.sql.Date.valueOf(currentDate)))) {
                     discount2 = PromotionService.getListPromotions().get(j).getPercentDiscount();
-                    System.out.println(arrayList.get(i).getPrice());
-                    System.out.println(ProductService.getListProducts().get(i).getPrice());
+//                    System.out.println(arrayList.get(i).getPrice());
+//                    System.out.println(ProductService.getListProducts().get(i).getPrice());
                     for (int h = 0; h < ProductService.getListProducts().size(); h++) {
                         if (arrayList.get(i).getPrice() == ProductService.getListProducts().get(h).getPrice()) {
                             double temp2 = arrayList.get(i).getPrice();

@@ -108,6 +108,7 @@ public class ProductService {
             if (cbProductID.getValue().getId().equals(arrayList.get(i).getId())) {
                 double temp = arrayList.get(i).getUnit();
                 arrayList.get(i).setUnit(temp + 1);
+                arrayList.get(i).setPromoPrice(cbProductID.getValue().getPrice());
                 txtQuantity.setText("");
                 tbView.refresh();
                 flag = false;
@@ -117,6 +118,7 @@ public class ProductService {
         //Neu nhu khong trung thi them san pham voi so luong mac dinh la 1
         if (flag) {
             Product data = new Product(cbProductID.getValue().getId(), cbProductID.getValue().getName(), cbProductID.getValue().getOrigin(), cbProductID.getValue().getPrice());
+            data.setPromoPrice(cbProductID.getValue().getPrice());
             if (txtQuantity.getText().equals("")) {
                 tbView.getItems().add(data);
                 txtQuantity.setText("");
@@ -125,7 +127,7 @@ public class ProductService {
                 if (isNumberic(txtQuantity.getText())) {
                     double d = Double.parseDouble(txtQuantity.getText());
                     if (d <= 0) {
-                        Utils.showBox("Wrong value!", Alert.AlertType.ERROR).show();
+                        Utils.showBox("Bạn phải nhập số tiền lớn hơn 0!", Alert.AlertType.ERROR).show();
                     } else {
                         data.setUnit(d);
                         tbView.getItems().add(data);
@@ -133,7 +135,7 @@ public class ProductService {
                         tbView.refresh();
                     }
                 } else {
-                    Utils.showBox("Wrong value!", Alert.AlertType.ERROR).show();
+                    Utils.showBox("Bạn nhập sai định dạng!", Alert.AlertType.ERROR).show();
                 }
             }
         }

@@ -23,6 +23,10 @@ public class JdbcUtils {
     }
     
     public static Connection getConnection() throws SQLException {
+<<<<<<< HEAD
+        return DriverManager.getConnection("jdbc:mysql://localhost/marketapp", "root", "huynh123");
+=======
         return DriverManager.getConnection("jdbc:mysql://localhost/marketapp", "root", "25122k");
+>>>>>>> 3f7e2cd606b9b3ece6b0720ce93f22fe20f4b22a
     }
 }
