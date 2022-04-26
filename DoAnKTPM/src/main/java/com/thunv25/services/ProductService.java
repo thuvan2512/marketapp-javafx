@@ -72,12 +72,13 @@ public class ProductService {
         Product product = new Product();
         List<Double> arrayList1 = new ArrayList<>();
         List<Double> arrayList2 = new ArrayList<>();
-
+//        List<Double> arrayList3 = new ArrayList<>();
         //Lay don gia va so luong cua tung dong
         for (int i = 0; i < tbView.getItems().size(); i++) {
             product = tbView.getItems().get(i);
             arrayList1.add(product.getPrice());
             arrayList2.add(product.getUnit());
+//            arrayList3.add(product.getPrice());
         }
 
         //tinh tong bang so luong nhan don gia
@@ -145,18 +146,24 @@ public class ProductService {
         if (txtQuantity.getText() != null) {
             Product getProduct = tbView.getSelectionModel().getSelectedItem();
             if (getProduct != null && txtQuantity.getText().length() > 0 && txtQuantity.getText() != null) {
-                getProduct.setUnit(Double.parseDouble(txtQuantity.getText()));
-                txtQuantity.setText("");
-                tbView.refresh();
+                if (isNumberic(txtQuantity.getText())) {
+                    getProduct.setUnit(Double.parseDouble(txtQuantity.getText()));
+                    txtQuantity.setText("");
+                    tbView.refresh();
+                }
+                else 
+                    Utils.showBox("Bạn nhập sai định dạng!", Alert.AlertType.ERROR).show();
             }
         }
     }
 
     public void delete(TableView<Product> tbView, TextField txtQuantity) {
-        ObservableList<Product> allProducts, singleProducts;
-        allProducts = tbView.getItems();
-        singleProducts = tbView.getSelectionModel().getSelectedItems();
-        singleProducts.forEach(allProducts::remove);
+//        ObservableList<Product> allProducts, singleProducts;
+//        Product singleProducts;
+//        allProducts = tbView.getItems();
+//        singleProducts = tbView.getSelectionModel().getSelectedItems();
+//        singleProducts.forEach(allProducts::remove);
+        tbView.getItems().removeAll(tbView.getSelectionModel().getSelectedItems());
         txtQuantity.setText("");
         tbView.refresh();
     }
@@ -203,7 +210,7 @@ public class ProductService {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(String.format("Số tiền thối lại cho khách hàng : %,.0f VND", tienThoiLai));
-        alert.setContentText(String.format("Bạn được giảm giá %s%s vào tổng tiền ╰(*°▽°*)╯", SaleController.discount*100, "%"));
+        alert.setContentText(String.format("Bạn được giảm giá %s%s vào tổng tiền ╰(*°▽°*)╯", SaleController.discount * 100, "%"));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Bill bills = new Bill(UUID.randomUUID().toString(), cusID, BranchService.findBranchByID(StaffServices.getCurrentUser().getBranch()).getBranchID(), true, discount, SaleController.tongTien, java.sql.Date.valueOf(currentDate));
@@ -332,7 +339,8 @@ public class ProductService {
             return stm2.executeUpdate() > 0;
         }
     }
-    public static ArrayList<Product> filterListByKeyword(ArrayList<Product> list,String key){
+
+    public static ArrayList<Product> filterListByKeyword(ArrayList<Product> list, String key) {
         return (ArrayList<Product>) list.stream().filter(product -> product.getName().toLowerCase().contains(key.toLowerCase())).collect(Collectors.toList());
     }
 }
