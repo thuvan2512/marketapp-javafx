@@ -72,11 +72,12 @@
                      <children>
                         <TableView fx:id="tbView" editable="true" onMouseClicked="#showNumbers" prefHeight="408.0" prefWidth="639.0">
                            <columns>
-                              <TableColumn fx:id="colProductID" prefWidth="93.60000306367874" text="Mã đơn hàng" />
-                              <TableColumn fx:id="colName" prefWidth="211.2000274658203" text="Tên đơn" />
-                              <TableColumn fx:id="colOrigin" prefWidth="120.00006103515625" text="Xuất xứ" />
-                              <TableColumn fx:id="colUnitPrice" prefWidth="124.79995727539062" text="Đơn giá" />
-                              <TableColumn fx:id="colQuantity" prefWidth="86.4000122070313" text="Số lượng" />
+                              <TableColumn fx:id="colProductID" prefWidth="52.000030517578125" text="Mã đơn hàng" />
+                              <TableColumn fx:id="colName" prefWidth="124.0" text="Tên đơn" />
+                              <TableColumn fx:id="colOrigin" minWidth="4.0" prefWidth="54.400054931640625" text="Xuất xứ" />
+                              <TableColumn fx:id="colUnitPrice" minWidth="0.0" prefWidth="177.60003662109375" text="Giá đã giảm" />
+                              <TableColumn fx:id="colPromoPrice" prefWidth="161.5999755859375" text="Giá gốc" />
+                              <TableColumn fx:id="colQuantity" prefWidth="77.60003662109375" text="Số lượng" />
                            </columns>
                         </TableView>
                      </children>

@@ -8,6 +8,7 @@ public class Product {
     private String name;
     private String origin;
     private double price;
+    private double promoPrice;
     private double unit;
 
     public Product() {
@@ -24,6 +25,7 @@ public class Product {
         this.origin = origin;
         this.price = price;
         this.unit = 1;
+        this.promoPrice = 1;
     }
     
     public Product(String name, String origin, double price) {
@@ -32,6 +34,7 @@ public class Product {
         this.origin = origin;
         this.price = price;
         this.unit = 1;
+        this.promoPrice = 1;
     }
 
     public String getId() {
@@ -74,6 +77,13 @@ public class Product {
         this.unit = unit;
     }
     
+    public void setPromoPrice(double promoPrice) {
+        this.promoPrice = promoPrice;
+    }
+    
+    public double getPromoPrice() {
+        return promoPrice;
+    }
     @Override
     public String toString() {
         return this.name;

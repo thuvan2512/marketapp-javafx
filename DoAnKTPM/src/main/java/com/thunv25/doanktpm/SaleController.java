@@ -67,6 +67,8 @@ public class SaleController implements Initializable {
     @FXML
     private TableColumn<Product, Double> colQuantity;
     @FXML
+    private TableColumn<Product, Double> colPromoPrice;
+    @FXML
     TableView<Product> tbView;
     @FXML
     private TextField txtQuantity;
@@ -122,6 +124,7 @@ public class SaleController implements Initializable {
         colOrigin.setCellValueFactory(new PropertyValueFactory<>("origin"));
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        colPromoPrice.setCellValueFactory(new PropertyValueFactory<>("promoPrice"));
     }
 
     public void showNumbers(MouseEvent event) {
@@ -141,7 +144,7 @@ public class SaleController implements Initializable {
             double money = 0;
             if (!lbTotalPrice.getText().equals(lbMoneyAfter.getText())) {
                 if (SaleController.myTemp != 0) {
-                    System.out.println(SaleController.myTemp);
+//                    System.out.println(SaleController.myTemp);
                     money = SaleController.tongTien;
                     double money1 = SaleController.tongTien - (SaleController.tongTien * 0.1);
                     lbMoneyAfter.setText(String.format("%,.0f VND", money1));
