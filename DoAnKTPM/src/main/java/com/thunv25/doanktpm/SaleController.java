@@ -159,11 +159,62 @@ public class SaleController implements Initializable {
     public void updateButton(ActionEvent event) {
         productService.update(txtQuantity, tbView);
         productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
+
+        double money = 0;
+        if (!lbTotalPrice.getText().equals(lbMoneyAfter.getText())) {
+            if (SaleController.myTemp != 0) {
+//                    System.out.println(SaleController.myTemp);
+                money = SaleController.tongTien;
+                double money1 = SaleController.tongTien - (SaleController.tongTien * 0.1);
+                lbMoneyAfter.setText(String.format("%,.0f VND", money1));
+            } else {
+                money = SaleController.tongTien;
+                lbMoneyAfter.setText(String.format("%,.0f VND", money));
+            }
+        }
     }
 
     public void deleteButton(ActionEvent event) {
+        
         productService.delete(tbView, txtQuantity);
+        if (tbView.getItems().isEmpty()) {
+            lbMoneyAfter.setText("");
+            lbTotalPrice.setText("");
+        }
         productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
+//        productService.showTotalMoney(tbView, lbTotalPrice, txtQuantity);
+        double money = 0;
+        if (!lbTotalPrice.getText().equals(lbMoneyAfter.getText())) {
+            if (SaleController.myTemp != 0) {
+                money = SaleController.tongTien;
+                double money1 = SaleController.tongTien - (SaleController.tongTien * 0.1);
+                lbMoneyAfter.setText(String.format("%,.0f VND", money1));
+            } else {
+                money = SaleController.tongTien;
+                lbMoneyAfter.setText(String.format("%,.0f VND", money));
+            }
+        }
+        
+        
+//        List<Product> arrayList = new ArrayList<>();
+//        Product product = new Product();
+//        //Get data from tableview
+//        for (int i = 0; i < tbView.getItems().size(); i++) {
+//            product = tbView.getItems().get(i);
+//            arrayList.add(product);
+//        }
+//
+//        if (arrayList.isEmpty()) {
+//            txtCustomerMoney.setText("");
+//            txtMaKhachHang.setText("");
+//            txtQuantity.setText("");
+//            lbTotalPrice.setText("");
+//            lbLeftMoney.setText("");
+//            lbDiscount.setText("");
+////                            lbDiscountS.setText("");
+//            tbView.getItems().clear();
+//            lbMoneyAfter.setText("");
+//        }
     }
 
     public void btThanhToan(ActionEvent event) throws SQLException {
@@ -262,7 +313,7 @@ public class SaleController implements Initializable {
             if (temp == false) {
                 lbMoneyAfter.setText(String.format("%,.0f VND", SaleController.tongTien));
             }
-        } 
+        }
 //        else {
 //            Utils.showBox("Hãy nhập mà khách hàng!", AlertType.ERROR).show();
 //        }
