@@ -493,6 +493,8 @@ public class AdminController implements Initializable {
                 Utils.showBox("Bạn không được để trống thông tin", Alert.AlertType.WARNING).show();
             }else if (Utils.isNumber(txtPercentDiscount.getText()) == false){
                 Utils.showBox("Sai định dạng số !!!", Alert.AlertType.WARNING).show();
+            }else if (Double.parseDouble(txtPercentDiscount.getText()) > 1) {
+                Utils.showBox("Phần trăm giảm giảm giá không được lớn hơn 1 !!!", Alert.AlertType.WARNING).show();
             }else if(dtpStartDate.getValue().isAfter(dtpEndDate.getValue()) ) {
                 Utils.showBox("Ngày bắt đầu phải trước ngày kết thúc!!!", Alert.AlertType.WARNING).show();
             } else if (PromotionService.checkValidToCreate(cbProductPromo.getSelectionModel().getSelectedItem().getId(), valueOf(dtpStartDate.getValue())) == false) {
