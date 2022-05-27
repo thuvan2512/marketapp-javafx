@@ -1,1 +1,1 @@
-# marketapp-javafx
+## Supermarket management application
